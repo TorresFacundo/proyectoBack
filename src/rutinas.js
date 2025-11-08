@@ -2,6 +2,7 @@ let infoRutinas = {
     rutinas: [
         {
           id:1
+          
         },
         {
           id:2
