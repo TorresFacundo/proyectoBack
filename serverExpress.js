@@ -1,6 +1,7 @@
 const express = require('express');
 const fs = require('node:fs');
 const { infoEjercicios } = require('./src/ejercicios');
+const { infoRutinas } = require('./src/rutinas');
 
 const app = express();
 const PORT = 3000;
@@ -24,7 +25,7 @@ app.get('/api/ejercicios', (req, res) => {
 });
 
 app.get('/api/rutinas', (req, res) => {
-  res.send(JSON.stringify(infoEjercicios)); // Express convierte el objeto a JSON automáticamente
+  res.send(JSON.stringify(infoRutinas)); // Express convierte el objeto a JSON automáticamente
 });
 
 
