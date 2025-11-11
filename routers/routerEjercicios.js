@@ -9,11 +9,10 @@ const ejerciciosController = require('../controllers/ejerciciosController')
 
 routerEjercicios.get('/', ejerciciosController.readEjercicios);
 
-routerEjercicios.post('/', (req, res) =>{
-  let ejercicioNuevo = req.body;
-  DatosEjercicios.infoEjercicios.ejercicios.push(ejercicioNuevo)
-  res.setHeader('Content-Type', 'application/json')
-  res.send(JSON.stringify(DatosEjercicios.infoEjercicios))
-})
+routerEjercicios.post('/', ejerciciosController.createEjercicios)
+
+routerEjercicios.delete('/:id', ejerciciosController.deleteEjercicios)
+
+routerEjercicios.put('/:id', ejerciciosController.updateEjercicios)
 
 module.exports = routerEjercicios;
