@@ -5,6 +5,8 @@ const connectDB = require('./database/connection');
 const errorHandler = require('./middlewares/errorHandler');
 
 // Importar rutas
+const authRoutes = require('./routes/auth.routes');
+
 const userRoutes = require('./routes/user.routes');
 //const exerciseRoutes = require('./routes/ejercicios.routes');
 const equipmentRoutes = require('./routes/elementos.routes');
@@ -46,8 +48,10 @@ app.get('/', (req, res) => {
 });
 
 // Rutas de la API
-console.log('userRoutes:', userRoutes);
+app.use('/api/auth', authRoutes);
+console.log('authRoutes:', authRoutes);
 
+//console.log('userRoutes:', userRoutes);
 app.use('/api/users', userRoutes);
 //app.use('/api/exercises', exerciseRoutes);
 app.use('/api/equipment', equipmentRoutes);
@@ -58,7 +62,7 @@ app.use('/api/equipment', equipmentRoutes);
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    error: 'Ruta ${req.originalUrl} no encontrada'
+    error: `Ruta ${req.originalUrl} no encontrada`
   });
 });
 
