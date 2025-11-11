@@ -1,19 +1,22 @@
 const express = require('express');
 const fs = require('node:fs');
 
-const routerClase = require('./routers/clases.routes');
-const { infoEjercicios } = require('./src/ejercicios');
-const { infoRutinas } = require('./src/rutinas');
+// importar las rutas
+const ejerciciosRoutes = require('./routers/ejercicios.routes');
+const rutinasRoutes = require('./routers/rutinas.routes');
 
 const app = express();
 const PORT = 3000;
 const HOSTNAME = '127.0.0.1';
 
-// Leer los archivos HTML con codificación
+// Si estás usando body JSON
+app.use(express.json());
+
+// Leer archivos HTML
 const HOME = fs.readFileSync('./index.html', 'utf-8');
 const ABOUT = fs.readFileSync('./about.html', 'utf-8');
 
-// Rutas
+// Rutas de páginas
 app.get('/', (req, res) => {
   res.send(HOME);
 });
@@ -22,19 +25,9 @@ app.get('/about', (req, res) => {
   res.send(ABOUT);
 });
 
-app.get('/api/ejercicios', (req, res) => {
-  res.send(JSON.stringify(infoEjercicios)); // Express convierte el objeto a JSON automáticamente
-});
-
-app.get('/api/rutinas', (req, res) => {
-  res.send(JSON.stringify(infoRutinas)); // Express convierte el objeto a JSON automáticamente
-});
-
-//Clases
-app.use('/api/clases', routerClase); // todas las rutas de clases empiezan con /api/clases
+// ✅ Rutas API
 app.use('/api/ejercicios', ejerciciosRoutes);
 app.use('/api/rutinas', rutinasRoutes);
-app.use('/api/elementos', elementosRoutes);
 
 // Escuchar el servidor
 app.listen(PORT, HOSTNAME, () => {

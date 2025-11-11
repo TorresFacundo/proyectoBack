@@ -1,16 +1,24 @@
-const Rutina = require('../models/rutinaModel');
+const { infoRutinas } = require('../src/rutinas');
 
+// Listar todas las rutinas
 const listarRutinas = async () => {
-  return await Rutina.find();
+  return infoRutinas;
 };
 
-const crearRutina = async (datos) => {
-  const nuevaRutina = new Rutina(datos);
-  return await nuevaRutina.save();
+// Crear una nueva rutina
+const crearRutina = async (nuevaRutina) => {
+  const id = infoRutinas.length + 1;
+  const rutina = { id, ...nuevaRutina };
+  infoRutinas.push(rutina);
+  return rutina;
 };
 
+// Eliminar rutina
 const eliminarRutina = async (id) => {
-  return await Rutina.findByIdAndDelete(id);
+  const index = infoRutinas.findIndex(r => r.id === parseInt(id));
+  if (index !== -1) {
+    infoRutinas.splice(index, 1);
+  }
 };
 
 module.exports = { listarRutinas, crearRutina, eliminarRutina };
