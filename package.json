@@ -1,9 +1,10 @@
 {
   "scripts": {
-    "start": "node serverExpress.js",
-    "dev": "nodemon serverExpress.js"
+    "start": "app.js",
+    "dev": "app.js"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
@@ -14,8 +15,8 @@
   },
   "name": "proyectoback",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Backend API para aplicación de gimnasio",
+  "main": "app.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TorresFacundo/proyectoBack.git"
