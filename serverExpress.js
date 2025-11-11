@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('node:fs');
+const routerClase = require('./routers/clases.routes');
 const { infoEjercicios } = require('./src/ejercicios');
 const { infoRutinas } = require('./src/rutinas');
 
@@ -28,6 +29,8 @@ app.get('/api/rutinas', (req, res) => {
   res.send(JSON.stringify(infoRutinas)); // Express convierte el objeto a JSON automáticamente
 });
 
+//Clases
+app.use('/api/clases', routerClase); // todas las rutas de clases empiezan con /api/clases
 
 // Escuchar el servidor
 app.listen(PORT, HOSTNAME, () => {
