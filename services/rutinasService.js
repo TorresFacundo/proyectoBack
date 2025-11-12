@@ -1,8 +1,6 @@
 const Rutina = require('../models/rutinas.model');
 const repository = require('../repositories/rutinas.repository');
 
-const repository = require('../repositories/rutinas.repository');
-
 // Obtener todas
 exports.listarRutinas = async () => {
   return await repository.getAllRutinasRepository();
