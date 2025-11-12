@@ -1,6 +1,6 @@
 const service = require('../services/rutinasService');
 
-// ✅ Obtener todas las rutinas
+// Obtener todas las rutinas
 exports.getRutinas = async (req, res) => {
   try {
     const rutinas = await service.listarRutinas();
@@ -23,7 +23,7 @@ exports.getRutinaById = async (req, res) => {
 };
 
 
-// ✅ Crear nueva rutina
+// Crear nueva rutina
 exports.postRutina = async (req, res) => {
   try {
     const nueva = await service.crearRutina(req.body);
@@ -33,7 +33,7 @@ exports.postRutina = async (req, res) => {
   }
 };
 
-// ✅ Actualizar rutina
+// Actualizar rutina
 exports.putRutina = async (req, res) => {
   try {
     const actualizada = await service.actualizarRutina(req.params.id, req.body);
@@ -43,7 +43,7 @@ exports.putRutina = async (req, res) => {
   }
 };
 
-// ✅ Eliminar rutina
+// Eliminar rutina
 exports.deleteRutina = async (req, res) => {
   try {
     await service.eliminarRutina(req.params.id);

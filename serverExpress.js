@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('node:fs');
 const conectarDB = require('./database/connection');
 
-// importar las rutas
+// importo las rutas
 const ejerciciosRoutes = require('./routers/ejercicios.routes');
 const rutinasRoutes = require('./routers/rutinas.routes');
 
@@ -10,7 +10,6 @@ const app = express();
 const PORT = 3000;
 const HOSTNAME = '127.0.0.1';
 
-// Si estás usando body JSON
 app.use(express.json());
 
 // Leer archivos HTML

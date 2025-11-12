@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const configMongoDB = {
     user: process.env.USER_DB_MONGO_DB,
     password: process.env.PASSWORD_DB_MONGO_DB,
@@ -5,4 +7,4 @@ const configMongoDB = {
     app_name: process.env.APP_NAME_MONGO_DB
 }
 
-module.exports = {configDB, configMongoDB}
+module.exports = {configMongoDB}
