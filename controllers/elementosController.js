@@ -1,9 +1,8 @@
-const Equipment = require('../models/elementos.model');
+const equipmentService = require('../services/elementosService');
 
 exports.createEquipment = async (req, res) => {
   try {
-    const equipment = new Equipment(req.body);
-    await equipment.save();
+    const equipment = await equipmentService.createEquipment(req.body);
     res.status(201).json({ success: true, data: equipment });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
@@ -12,13 +11,7 @@ exports.createEquipment = async (req, res) => {
 
 exports.getAllEquipment = async (req, res) => {
   try {
-    const { category, isAvailable } = req.query;
-    const filter = {};
-    
-    if (category) filter.category = category;
-    if (isAvailable !== undefined) filter.isAvailable = isAvailable === 'true';
-    
-    const equipment = await Equipment.find(filter);
+    const equipment = await equipmentService.getAllEquipment(req.query);
     res.json({ success: true, data: equipment });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
@@ -27,30 +20,16 @@ exports.getAllEquipment = async (req, res) => {
 
 exports.getEquipmentById = async (req, res) => {
   try {
-    const equipment = await Equipment.findById(req.params.id);
-    
-    if (!equipment) {
-      return res.status(404).json({ success: false, error: 'Equipamiento no encontrado' });
-    }
-    
+    const equipment = await equipmentService.getEquipmentById(req.params.id);
     res.json({ success: true, data: equipment });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(404).json({ success: false, error: error.message });
   }
 };
 
 exports.updateEquipment = async (req, res) => {
   try {
-    const equipment = await Equipment.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      { new: true, runValidators: true }
-    );
-    
-    if (!equipment) {
-      return res.status(404).json({ success: false, error: 'Equipamiento no encontrado' });
-    }
-    
+    const equipment = await equipmentService.updateEquipment(req.params.id, req.body);
     res.json({ success: true, data: equipment });
   } catch (error) {
     res.status(400).json({ success: false, error: error.message });
@@ -59,25 +38,16 @@ exports.updateEquipment = async (req, res) => {
 
 exports.deleteEquipment = async (req, res) => {
   try {
-    const equipment = await Equipment.findByIdAndDelete(req.params.id);
-    
-    if (!equipment) {
-      return res.status(404).json({ success: false, error: 'Equipamiento no encontrado' });
-    }
-    
+    await equipmentService.deleteEquipment(req.params.id);
     res.json({ success: true, message: 'Equipamiento eliminado' });
   } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
+    res.status(404).json({ success: false, error: error.message });
   }
 };
 
-// Obtener por categoría
 exports.getByCategory = async (req, res) => {
   try {
-    const equipment = await Equipment.find({ 
-      category: req.params.category 
-    });
-    
+    const equipment = await equipmentService.getByCategory(req.params.category);
     res.json({ success: true, data: equipment });
   } catch (error) {
     res.status(500).json({ success: false, error: error.message });
