@@ -1,43 +1,44 @@
 const { infoEjercicios } = require('../src/ejercicios');
+const ejerciciosService = require('../service/ejerciciosService')
 
 exports.readEjercicios = (req, res) => {
   res.setHeader('Content-Type', 'application/json');
-  res.send(JSON.stringify(infoEjercicios));
+  res.status(200);
+  res.send(ejerciciosService.getAllEjercicios());
 };
 
 exports.createEjercicios = (req, res) => {
-  let ejercicioNuevo = req.body;
-  infoEjercicios.ejercicios.push(ejercicioNuevo);
-  res.send(JSON.stringify(infoEjercicios));
+  res.send(ejerciciosService.createNewEjercicio(req.body));
 };
 
 exports.deleteEjercicios = (req, res) =>{
   const id = req.params.id;
+  const ejerciciosController = ejerciciosService.deleteEjercicio(id)
 
-  const indice = infoEjercicios.ejercicios.findIndex(ejercicios => ejercicios.id == id);
-
-  if(indice > 0){ 
-    infoEjercicios.ejercicios.splice(indice, 1);
-  } else {
-    res.sendStatus(404);
-    res.send("Recurso no encontrado")
+  if(ejerciciosController.length === 0){ 
+    return res.sendStatus(404).res.send("Ejercicio de id: " + id + " no encontrado")
   }
 
-  res.send(JSON.stringify(infoEjercicios));
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200);
+  res.send(ejerciciosController);
 };
+
+/*FALTA POR ITEMS */
 
 exports.updateEjercicios = (req, res) =>{
   const ejercicioActualizado = req.body;
   const id = req.params.id;
 
-  const indice = infoEjercicios.ejercicios.findIndex(ejercicios => ejercicios.id == id);
+  const ejercicioController = ejerciciosService.updateEjercicio(id, ejercicioActualizado)
 
-  if(indice > 0){ 
-    infoEjercicios.ejercicios[indice] = ejercicioActualizado;
-  } else {
-    res.sendStatus(404);
-    res.send("Recurso no encontrado")
+  if(ejercicioController === 0){
+    return res.status(404).send("Ejercicio de id: " + id + " no encontrado")
   }
-
-  res.send(JSON.stringify(infoEjercicios));
+  
+  res.setHeader('Content-Type', 'application/json');
+  res.status(200);
+  res.send(ejercicioController);
 };
+
+/*FALTA POR ITEMS */
