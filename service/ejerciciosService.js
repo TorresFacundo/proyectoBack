@@ -4,6 +4,16 @@ exports.getAllEjercicios = () => {
     return (JSON.stringify(infoEjercicios))
 }
 
+exports.getEjercicioId = (id) => {
+    const indice = infoEjercicios.ejercicios.findIndex(ejercicio => ejercicio.id == id);
+
+    if (indice >= 0) { 
+        return infoEjercicios.ejercicios[indice];
+    } else {
+        return [];
+    }
+};
+
 exports.createNewEjercicio = (ejercicioNuevo) => {
     infoEjercicios.ejercicios.push(ejercicioNuevo);
     return (JSON.stringify(infoEjercicios))
@@ -28,5 +38,17 @@ exports.updateEjercicio = (id, ejercicioActualizado) => {
         return infoEjercicios
     } else {
         return []
+    }
+}
+
+exports.updateEjercicioItem = (id, ejercicioActualizado) => {
+    const indice = infoEjercicios.ejercicios.findIndex(ejercicio => ejercicio.id == id);
+
+    if (indice >= 0) { 
+        const ejercicioAModificar = infoEjercicios.ejercicios[indice];
+        Object.assign(ejercicioAModificar, ejercicioActualizado);
+        return infoEjercicios;
+    } else {
+        return [];
     }
 }
