@@ -49,7 +49,6 @@ app.get('/', (req, res) => {
 
 // Rutas de la API
 app.use('/api/auth', authRoutes);
-console.log('authRoutes:', authRoutes);
 
 //console.log('userRoutes:', userRoutes);
 app.use('/api/users', userRoutes);

@@ -14,3 +14,5 @@ router.put('/:id', protect, authorize('admin', 'instructor'), equipmentControlle
 router.delete('/:id', protect, authorize('admin'), equipmentController.deleteEquipment);
 
 module.exports = router;
+
+//TODOS ESTOS METODOS FUNCIONAN BIEN, ROL ADMIN Y INSTRUCTOR SE PUEDEN SETEAR EN BD O CREAR LOS MOCKS
