@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('node:fs');
+const conectarDB = require('./database/connection');
 
 // importar las rutas
 const ejerciciosRoutes = require('./routers/ejercicios.routes');
@@ -16,6 +17,9 @@ app.use(express.json());
 const HOME = fs.readFileSync('./index.html', 'utf-8');
 const ABOUT = fs.readFileSync('./about.html', 'utf-8');
 
+// Conectar a la base de datos
+conectarDB();
+
 // Rutas de páginas
 app.get('/', (req, res) => {
   res.send(HOME);
@@ -25,7 +29,7 @@ app.get('/about', (req, res) => {
   res.send(ABOUT);
 });
 
-// ✅ Rutas API
+// Rutas API
 app.use('/api/ejercicios', ejerciciosRoutes);
 app.use('/api/rutinas', rutinasRoutes);
 

@@ -1,24 +1,29 @@
-const { infoRutinas } = require('../src/rutinas');
+const Rutina = require('../models/rutinas.model');
+const repository = require('../repositories/rutinas.repository');
 
-// Listar todas las rutinas
-const listarRutinas = async () => {
-  return infoRutinas;
+// Obtener todas
+exports.listarRutinas = async () => {
+  return await Rutina.find();
 };
 
-// Crear una nueva rutina
-const crearRutina = async (nuevaRutina) => {
-  const id = infoRutinas.length + 1;
-  const rutina = { id, ...nuevaRutina };
-  infoRutinas.push(rutina);
-  return rutina;
+
+exports.obtenerRutinaPorId = async (id) => {
+  return await repository.obtenerRutinaPorIdRepository(id);
 };
 
-// Eliminar rutina
-const eliminarRutina = async (id) => {
-  const index = infoRutinas.findIndex(r => r.id === parseInt(id));
-  if (index !== -1) {
-    infoRutinas.splice(index, 1);
-  }
+
+// Crear
+exports.crearRutina = async (data) => {
+  const nueva = new Rutina(data);
+  return await nueva.save();
 };
 
-module.exports = { listarRutinas, crearRutina, eliminarRutina };
+// Actualizar
+exports.actualizarRutina = async (id, data) => {
+  return await Rutina.findByIdAndUpdate(id, data, { new: true });
+};
+
+// Eliminar
+exports.eliminarRutina = async (id) => {
+  return await Rutina.findByIdAndDelete(id);
+};

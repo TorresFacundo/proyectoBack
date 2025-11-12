@@ -1,9 +1,11 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const rutinaSchema = new mongoose.Schema({
-  nombre: String,
-  objetivo: String,
-  tipo: Number
+  nombre: { type: String, required: true },
+  objetivo: { type: String, required: true },
+  tipo: { type: String, required: true } //
 });
 
-export default mongoose.model("Rutina", rutinaSchema);
+
+module.exports = mongoose.model("Rutina", rutinaSchema);
+

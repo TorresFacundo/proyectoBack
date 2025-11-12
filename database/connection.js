@@ -1,25 +1,22 @@
+// db.js
 const mongoose = require('mongoose');
-const configMongoDB = require ('./config').configMongoDB
+require('dotenv').config();
 
 const conectarDB = async () => {
   try {
-    await mongoose.connect('mongodb://localhost:27017/gimnasioDB');
-    console.log('Conectado a MongoDB');
+    const uri = `mongodb+srv://${process.env.USER_DB_MONGO_DB}:${process.env.PASSWORD_DB_MONGO_DB}@cluster0.ldkoxpy.mongodb.net/${process.env.NAME_DB_MONGO_DB}?retryWrites=true&w=majority&appName=Cluster0`;
+
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
+    console.log('✅ Conectado correctamente a MongoDB Atlas');
   } catch (error) {
-    console.error('Error al conectar a la base de datos:', error);
+    console.error('Error al conectar a MongoDB:', error.message);
+    process.exit(1);
   }
 };
 
-const URI = `mongodb+srv://francoespejo743_db_user:ulE7Eqgwzdb95dno@cluster0.ldkoxpy.mongodb.net/?appName=Cluster0`
-
-exports.getMongoDBConnection = async () => {
-  try {
-    await mongoose.conect('mongodb://127.0.0.1/gimnasioDB')
-    
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
-}
-
 module.exports = conectarDB;
+
