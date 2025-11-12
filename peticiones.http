@@ -1,27 +1,27 @@
-### 🟢 Obtener todas las rutinas
+### Obtener todas las rutinas
 GET http://127.0.0.1:3000/api/rutinas HTTP/1.1
 
 ###
 
-### 🔵 Obtener una rutina por ID
+### Obtener una rutina por ID
 GET http://127.0.0.1:3000/api/rutinas/1 HTTP/1.1
 # 👆 reemplazá el ID por uno real de tu colección en MongoDB
 
 ###
 
-### 🟠 Crear una nueva rutina
+### Crear una nueva rutina
 POST http://127.0.0.1:3000/api/rutinas HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Rutina de hipertrofiaaaaaa",
-  "objetivo": "Aumentar masa muscular",
-  "tipo": "Fuerza"
+  "nombre": "Rutina de fuerza",
+  "objetivo": "Aumentar fuerza maxima",
+  "tipo": "Powerlifting"
 }
 
 ###
 
-### 🟣 Actualizar una rutina existente
+### Actualizar una rutina existente
 PUT http://127.0.0.1:3000/api/rutinas/672f1b8f0d9f8b1234567890 HTTP/1.1
 Content-Type: application/json
 
@@ -33,6 +33,6 @@ Content-Type: application/json
 
 ###
 
-### 🔴 Eliminar una rutina
+### Eliminar una rutina
 DELETE http://127.0.0.1:3000/api/rutinas/672f1b8f0d9f8b1234567890 HTTP/1.1
 # 👆 reemplazá el ID por uno real que exista

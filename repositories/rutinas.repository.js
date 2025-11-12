@@ -1,8 +1,6 @@
-const conectarDB = require('../database/connection');
-conectarDB();
 const Rutina = require('../models/rutinas.model');
 
-// 🟢 Obtener todas las rutinas
+// Traer todas las rutinas
 exports.getAllRutinasRepository = async () => {
   console.log("Entrando en MONGO DB REPOSITORY - getAllRutinasRepository");
 
@@ -11,12 +9,12 @@ exports.getAllRutinasRepository = async () => {
     console.log(rutinas);
     return rutinas;
   } catch (error) {
-    console.log("❌ Error en MONGO DB REPOSITORY - getAllRutinasRepository:", error);
+    console.log("Error en MONGO DB REPOSITORY - getAllRutinasRepository:", error);
     throw new Error("Error al obtener las rutinas: " + error);
   }
 };
 
-// 🔵 Obtener rutina por ID
+// Obtener rutina por ID
 exports.obtenerRutinaPorIdRepository = async (id) => {
   console.log(`Entrando en MONGO DB REPOSITORY - getRutinaByIdRepository - id: ${id}`);
 
@@ -28,12 +26,12 @@ exports.obtenerRutinaPorIdRepository = async (id) => {
     }
     return rutina;
   } catch (error) {
-    console.log("❌ Error en MONGO DB REPOSITORY - getRutinaByIdRepository:", error);
+    console.log("Error en MONGO DB REPOSITORY - getRutinaByIdRepository:", error);
     throw new Error("Error al obtener la rutina: " + error);
   }
 };
 
-// 🟠 Crear una nueva rutina
+// Crear rutina
 exports.createRutinaRepository = async (rutinaData) => {
   console.log("Entrando en MONGO DB REPOSITORY - createRutinaRepository");
 
@@ -43,12 +41,12 @@ exports.createRutinaRepository = async (rutinaData) => {
     console.log("Rutina creada:", nuevaRutina);
     return nuevaRutina;
   } catch (error) {
-    console.log("❌ Error en MONGO DB REPOSITORY - createRutinaRepository:", error);
+    console.log("Error en MONGO DB REPOSITORY - createRutinaRepository:", error);
     throw new Error("Error al crear la rutina: " + error);
   }
 };
 
-// 🟣 Actualizar una rutina
+// Actualizar rutina
 exports.updateRutinaRepository = async (id, rutinaData) => {
   console.log(`Entrando en MONGO DB REPOSITORY - updateRutinaRepository - id: ${id}`);
 
@@ -61,12 +59,12 @@ exports.updateRutinaRepository = async (id, rutinaData) => {
     console.log("Rutina actualizada:", rutinaActualizada);
     return rutinaActualizada;
   } catch (error) {
-    console.log("❌ Error en MONGO DB REPOSITORY - updateRutinaRepository:", error);
+    console.log("Error en MONGO DB REPOSITORY - updateRutinaRepository:", error);
     throw new Error("Error al actualizar la rutina: " + error);
   }
 };
 
-// 🔴 Eliminar una rutina
+// Eliminar rutina
 exports.deleteRutinaRepository = async (id) => {
   console.log(`Entrando en MONGO DB REPOSITORY - deleteRutinaRepository - id: ${id}`);
 
@@ -79,7 +77,7 @@ exports.deleteRutinaRepository = async (id) => {
     console.log("Rutina eliminada:", rutinaEliminada);
     return rutinaEliminada;
   } catch (error) {
-    console.log("❌ Error en MONGO DB REPOSITORY - deleteRutinaRepository:", error);
+    console.log("Error en MONGO DB REPOSITORY - deleteRutinaRepository:", error);
     throw new Error("Error al eliminar la rutina: " + error);
   }
 };

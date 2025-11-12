@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/rutinasController');
 
-// Definimos las rutas CRUD
+// rutas para manejar los CRUD de Rutinas
 router.get('/', controller.getRutinas);
 router.get('/:id', controller.getRutinaById);
 router.post('/', controller.postRutina);

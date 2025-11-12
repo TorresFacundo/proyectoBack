@@ -1,29 +1,29 @@
 const Rutina = require('../models/rutinas.model');
 const repository = require('../repositories/rutinas.repository');
 
+const repository = require('../repositories/rutinas.repository');
+
 // Obtener todas
 exports.listarRutinas = async () => {
-  return await Rutina.find();
+  return await repository.getAllRutinasRepository();
 };
 
-
+// Obtener una
 exports.obtenerRutinaPorId = async (id) => {
   return await repository.obtenerRutinaPorIdRepository(id);
 };
 
-
 // Crear
 exports.crearRutina = async (data) => {
-  const nueva = new Rutina(data);
-  return await nueva.save();
+  return await repository.createRutinaRepository(data);
 };
 
 // Actualizar
 exports.actualizarRutina = async (id, data) => {
-  return await Rutina.findByIdAndUpdate(id, data, { new: true });
+  return await repository.updateRutinaRepository(id, data);
 };
 
 // Eliminar
 exports.eliminarRutina = async (id) => {
-  return await Rutina.findByIdAndDelete(id);
+  return await repository.deleteRutinaRepository(id);
 };
