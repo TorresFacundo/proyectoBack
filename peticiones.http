@@ -14,9 +14,9 @@ POST http://127.0.0.1:3000/api/rutinas HTTP/1.1
 Content-Type: application/json
 
 {
-  "nombre": "Rutina de fuerza",
-  "objetivo": "Aumentar fuerza maxima",
-  "tipo": "Powerlifting"
+  "nombre": "Rutina de piernas",
+  "objetivo": "Aumentar tamaño de gambas",
+  "tipo": "Hipertrofiaaa"
 }
 
 ###

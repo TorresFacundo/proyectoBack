@@ -5,6 +5,8 @@ const conectarDB = require('./database/connection');
 // importo las rutas
 const ejerciciosRoutes = require('./routers/ejercicios.routes');
 const rutinasRoutes = require('./routers/rutinas.routes');
+const clasesRoutes = require('./routers/clases.routes');
+const elementosRoutes = require('./routers/elementos.routes');
 
 const app = express();
 const PORT = 3000;
@@ -31,6 +33,8 @@ app.get('/about', (req, res) => {
 // Rutas API
 app.use('/api/ejercicios', ejerciciosRoutes);
 app.use('/api/rutinas', rutinasRoutes);
+app.use('/api/clases', clasesRoutes);
+app.use('/api/elementos', elementosRoutes);
 
 // Escuchar el servidor
 app.listen(PORT, HOSTNAME, () => {
