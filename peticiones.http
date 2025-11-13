@@ -33,5 +33,5 @@ Content-Type: application/json
 ###
 
 ### Eliminar una rutina
-DELETE http://127.0.0.1:3000/api/ejercicios/9 HTTP/1.1
+DELETE http://127.0.0.1:3000/api/ejercicios/69153e0bfff5d7e03f9a593a HTTP/1.1
 #
