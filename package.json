@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node serverExpress.js",
-    "dev": "nodemon serverExpress.js"
+    "dev": "nodemon serverExpress_Routers.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
