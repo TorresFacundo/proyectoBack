@@ -1,4 +1,4 @@
-const express = require('express');
+/*const express = require('express');
 const infoClase = require('../src/clases'); 
 const routerClase = express.Router();
 
@@ -8,3 +8,15 @@ routerClase.get('/', (req, res) => {
 });
 
 module.exports = routerClase;
+*/
+
+const express = require('express');
+const router = express.Router();
+const controller = require('../controllers/clasesController');
+
+// rutas para manejar los CRUD de clases
+router.get('/:id', controller.getClaseById);
+router.post('/', controller.postClase);
+
+
+module.exports = router;
