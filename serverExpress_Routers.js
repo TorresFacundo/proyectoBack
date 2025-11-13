@@ -1,20 +1,26 @@
 const express = require('express');
+const fs = require('node:fs');
+const conectarDB = require('./database/connection');
+
+// importo las rutas
+const routerEjercicios = require('./routers/routerEjercicios');
+const rutinasRoutes = require('./routers/rutinas.routes');
+const clasesRoutes = require('./routers/clases.routes');
+
 const app = express();
 const PORT = 3000;
 const HOSTNAME = '127.0.0.1';
 
-const fs = require('node:fs');
-const { infoEjercicios } = require('./src/ejercicios');
+app.use(express.json());
 
-
+// Leer archivos HTML
 const HOME = fs.readFileSync('./index.html', 'utf-8');
 const ABOUT = fs.readFileSync('./about.html', 'utf-8');
 
-const routerEjercicios = express.Router();
-app.use('/api/ejercicios', routerEjercicios)
+// Conectar a la base de datos
+conectarDB();
 
-
-// Rutas
+// Rutas de páginas
 app.get('/', (req, res) => {
   res.send(HOME);
 });
@@ -23,14 +29,10 @@ app.get('/about', (req, res) => {
   res.send(ABOUT);
 });
 
-routerEjercicios.get('/', (req, res) => {
-  res.send(JSON.stringify(infoEjercicios)); // Express convierte el objeto a JSON automáticamente
-});
-
-app.get('/api/rutinas', (req, res) => {
-  res.send(JSON.stringify(infoEjercicios)); // Express convierte el objeto a JSON automáticamente
-});
-
+// Rutas API
+app.use('/api/ejercicios', routerEjercicios);
+app.use('/api/rutinas', rutinasRoutes);
+app.use('/api/clases', clasesRoutes);
 
 // Escuchar el servidor
 app.listen(PORT, HOSTNAME, () => {

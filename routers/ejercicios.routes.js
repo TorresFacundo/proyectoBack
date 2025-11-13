@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const { infoEjercicios } = require('../src/ejercicios'); // ajustar el path según tu estructura
+const controller = require('../controllers/ejerciciosController');
 
-router.get('/', (req, res) => {
-  res.json(infoEjercicios);
-});
+// Rutas para manejar los CRUD de Ejercicios
+router.get('/', controller.readEjercicios);
+router.get('/:id', controller.readEjercicioId);
+router.post('/', controller.createEjercicios);
+router.put('/:id', controller.updateEjercicios);
+router.put('/:id', controller.updateEjerciciosItems);
+router.delete('/:id', controller.deleteEjercicios);
 
 module.exports = router;
