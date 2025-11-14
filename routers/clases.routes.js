@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/clasesController');
 
-// Rutas para manejar los CRUD de Ejercicios
+// Rutas para manejar los CRUD de clases
 router.get('/', controller.getClases);
 router.get('/:id', controller.getClaseById);
 router.post('/', controller.postClase);
