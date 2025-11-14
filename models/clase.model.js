@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const claseSchema = new mongoose.Schema({
-  Actividad: {
+  actividad: {
     type: String,
     required: true
   },
@@ -13,12 +13,10 @@ const claseSchema = new mongoose.Schema({
     type: [String], // porque es un array de días: ["lunes", "miércoles", "viernes",..]
     required: true
   },
-  Horario: {
+  horario: {
     type: String, // "9:00"
     required: true
   }
 });
 
-const Clase = mongoose.model('Clase', claseSchema);
-
-export default Clase;
+module.exports = mongoose.model("clases", claseSchema);
