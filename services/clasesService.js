@@ -7,8 +7,9 @@ exports.listarClases = async () => {
 
 // Obtener una
 exports.obtenerClasePorId = async (id) => {
-  return await repository.obtenerClasePorIdRepository(id);
+  return await repository.getClaseByIdRepository(id);
 };
+
 
 // Crear
 exports.crearClase = async (data) => {
