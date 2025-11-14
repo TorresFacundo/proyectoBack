@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const claseSchema = new mongoose.Schema({
   Actividad: {
@@ -19,6 +19,4 @@ const claseSchema = new mongoose.Schema({
   }
 });
 
-const Clase = mongoose.model('Clase', claseSchema);
-
-export default Clase;
+module.exports = mongoose.model("clases", claseSchema);

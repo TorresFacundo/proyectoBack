@@ -1,10 +1,11 @@
 const express = require('express');
-const infoClase = require('../src/clases'); 
-const routerClase = express.Router();
+const router = express.Router();
+const controller = require('../controllers/clasesController');
 
-// GET /api/clases
-routerClase.get('/', (req, res) => {
-    res.json(infoClase); // Express envía el JSON automáticamente
-});
+// Rutas para manejar los CRUD de Ejercicios
+router.get('/', controller.getClases);
+router.get('/:id', controller.getClaseById);
+router.post('/', controller.postClase);
+router.delete('/:id', controller.deleteClase);
 
-module.exports = routerClase;
+module.exports = router;

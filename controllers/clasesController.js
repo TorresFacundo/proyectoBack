@@ -1,0 +1,54 @@
+const claseService = require('../services/clasesService');
+
+// Obtener todas las clases
+exports.getClases = async (req, res) => {
+  try {
+    const clases = await claseService.listarClases();
+    res.json(clases);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al obtener clases', error });
+  }
+};
+
+exports.getClaseById = async (req, res) => {
+  try {
+    const clase = await claseService.obtenerClasePorId(req.params.id);
+    if (!clase) {
+      return res.status(404).json({ mensaje: 'no encontrada' });
+    }
+    res.json(clase);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error' });
+  }
+};
+
+
+// Crear nueva clase
+exports.postClase = async (req, res) => {
+  try {
+    const nueva = await service.crearClase(req.body);
+    res.status(201).json(nueva);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al crear clase', error });
+  }
+};
+
+// Actualizar clase
+exports.putClase = async (req, res) => {
+  try {
+    const actualizada = await service.actualizarClase(req.params.id, req.body);
+    res.json(actualizada);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar', error });
+  }
+};
+
+// Eliminar clase
+exports.deleteClase = async (req, res) => {
+  try {
+    await service.eliminarClase(req.params.id);
+    res.json({ mensaje: 'eliminada correctamente' });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al eliminar clase', error });
+  }
+};
