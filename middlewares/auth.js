@@ -51,14 +51,6 @@ exports.protect = async (req, res, next) => {
       });
     }
 
-    // Verificar estado de membresía
-    if (user.membershipStatus === 'suspended') {
-      return res.status(403).json({
-        success: false,
-        error: 'Tu membresía está suspendida'
-      });
-    }
-
     // Adjuntar usuario al request
     req.user = user;
     next();
@@ -141,36 +133,6 @@ exports.optionalAuth = async (req, res, next) => {
   }
 };
 
-// ============================================
-// VERIFICAR CAPACIDAD DE LA CLASE
-// ============================================
-exports.checkClassCapacity = async (req, res, next) => {
-  try {
-    const Class = require('../models/Class');
-    const gymClass = await Class.findById(req.params.classId);
-
-    if (!gymClass) {
-      return res.status(404).json({
-        success: false,
-        error: 'Clase no encontrada'
-      });
-    }
-
-    if (gymClass.enrolled.length >= gymClass.capacity) {
-      return res.status(400).json({
-        success: false,
-        error: 'La clase está llena'
-      });
-    }
-
-    next();
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      error: error.message
-    });
-  }
-};
 
 // ============================================
 // RATE LIMITING SIMPLE

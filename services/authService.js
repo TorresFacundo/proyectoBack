@@ -2,7 +2,7 @@ const userRepository = require('../repositories/userRepository');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 
-exports.registerUser = async ({ name, email, password, role }) => {
+exports.registerUser = async ({ name, email, password }) => {
   // Verificar si el email ya existe
   const existingUser = await userRepository.findByEmail(email);
   if (existingUser) {
@@ -41,10 +41,6 @@ exports.loginUser = async ({ email, password }) => {
   const isPasswordValid = await user.comparePassword(password);
   if (!isPasswordValid) {
     throw new Error('Credenciales inválidas');
-  }
-
-  if (user.membershipStatus === 'suspended') {
-    throw new Error('Tu membresía está suspendida. Contacta al administrador.');
   }
 
   const accessToken = user.generateAccessToken();

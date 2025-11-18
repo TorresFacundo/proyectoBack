@@ -15,19 +15,6 @@ router.put('/:id', protect, isOwnerOrAdmin('id'), userController.updateUser);
 //Metodos que quedan fuera del MVP
 
 // Asignar rutinas (instructor o admin) 
-// router.post(
-//   '/:userId/routines/:routineId',
-//   protect,
-//   authorize('instructor', 'admin'),
-//   userController.assignRoutine
-// );
-
 // Registrar progreso (usuario propietario o admin)
-// router.post(
-//   '/:userId/routines/:routineId/progress',
-//   protect,
-//   isOwnerOrAdmin('userId'),
-//   userController.logRoutineProgress
-// );
 
 module.exports = router;

@@ -38,31 +38,6 @@ const userSchema = new mongoose.Schema({
     height: Number,
     imageUrl: String
   },
-  membershipStatus: {
-    type: String,
-    enum: ['active', 'inactive', 'suspended'],
-    default: 'active'
-  },
-  membershipExpiry: Date,
-  assignedRoutines: [{
-    routine: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Routine'
-    },
-    assignedAt: {
-      type: Date,
-      default: Date.now
-    },
-    progress: [{
-      completedAt: Date,
-      duration: Number,
-      notes: String
-    }]
-  }],
-  enrolledClasses: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Class'
-  }],
   goals: {
     type: [String],
     enum: ['fuerza', 'hipertrofia', 'resistencia', 'perdida-peso', 'flexibilidad', 'salud-general']
